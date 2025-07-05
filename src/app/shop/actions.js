@@ -54,6 +54,9 @@ export async function createShop(formData) {
   console.log("hit");
   const data = await res.json();
   console.log("data", data);
-  return data.choices?.[0]?.message?.content || "Something went wrong."
+  const gptResponse = data.choices?.[0]?.message?.content;
+  console.log("gptResponse", gptResponse);
+  return gptResponse || "Something went wrong"
+  // return data.choices?.[0]?.message?.content || "Something went wrong."
   // Optional: Save to database, etc.
 }

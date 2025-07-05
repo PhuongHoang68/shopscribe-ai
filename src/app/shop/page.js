@@ -5,11 +5,23 @@ import { useState, useTransition } from "react";
 import { createShop } from "./actions";
 import { FaInstagram } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-
+import { useState } from "react";
 
 export default function Page() {
   const [result, setResult] = useState('');
   const [isPending, startTransition] = useTransition();
+  const [copied, setCopied] = useState(false);
+  const textToCopy = "Start Here"
+
+  // const handleCopy = async () => {
+  //   try {
+  //     await navigator.clipboard.writeText(textToCopy);
+  //     setCopied(true)
+  //     setTimeout(() => setCopied(false), 2000);
+  //   } catch (err) {
+  //     console.error("Copy failed", err)
+  //   }
+  // }
 
   function parseSections(text) {
     const sectionRegex = /^(\d+\.\s)?([A-Z][\w\s\-()]+):/gm;
@@ -33,9 +45,6 @@ export default function Page() {
     return sections;
   }  
   
-  
-  
-  
   function handleSubmit(formData) {
     startTransition(async () => {
       const outPut = await createShop(formData);
@@ -43,6 +52,7 @@ export default function Page() {
     })
     
   }
+
   return (
     // <div className="max-w-xl mx-auto py-10 space-y-6">
     <>
@@ -85,6 +95,8 @@ export default function Page() {
         </button>
       </form>
 
+
+      {/* parsing results  */}
       {result && (
   <div className="mt-6 p-4 border bg-gray-50 space-y-4" style={{padding: "40px", marginTop: "56px", fontFamily: "__nextjs-Geist Mono"}}>
     <h2 className="text-xl font-semibold mb-4">🛍️ Your Etsy Shop Blueprint</h2>
@@ -94,6 +106,9 @@ export default function Page() {
         <p className="whitespace-pre-wrap">{content}</p>
       </div>
     ))}
+
+
+    {/* navigation to ideogram, canva, or product page */}
     <p style={{fontFamily: "__nextjs-Geist Mono", paddingTop: "85px"}}>Once you have copied your Shop Banner Visual Description and Shop Icon Visual Description, follow the links below to AI-generate your shop banner & icon:</p>
     <div className="flex gap-4 items-center flex-col sm:flex-row" style={{paddingTop: "15px"}}>
     <button className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
@@ -114,16 +129,11 @@ export default function Page() {
     </button>
     </div>
   </div>
-  
-
-
 )
 }
 
-
-
-
       </div>
+      {/* footer */}
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
