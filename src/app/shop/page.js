@@ -5,7 +5,7 @@ import { useState, useTransition } from "react";
 import { createShop } from "./actions";
 import { FaInstagram } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import { useState } from "react";
+// import { useState } from "react";
 
 export default function Page() {
   const [result, setResult] = useState('');

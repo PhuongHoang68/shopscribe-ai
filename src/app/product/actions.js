@@ -3,38 +3,35 @@
 'use server'
 
 
-export async function createShop(formData) {
+export async function createProduct(fullPayload) {
   console.log("api key", process.env.OPENAI_API_KEY);
-  const product = formData.get('product')
-  const targetAudience = formData.get('target audience')
-  const pricePoint = formData.get('price point')
-  const tangible = formData.get('tangible')
-  const brandVibe = formData.get('brand vibe')
+  console.log("fullPayload", fullPayload);
+  const _product = fullPayload.product;
+  const _targetAudience = fullPayload.targetAudience;
+  const _tone = fullPayload.tone;
+  const _style = fullPayload.style
+  const _priceRange = fullPayload.priceRange
+  console.log("VALUES:", _product, _targetAudience, _tone, _style, _priceRange)
 
-  const prompt = `The product I want to sell is ${product}. My target audience is ${targetAudience}. My price point for my products are ${pricePoint}. It is a ${tangible} product. I want my shop to have a ${brandVibe} feel. Give me SEO-optimized shop Name ideas, shop Banner visual description, shop Icon visual description, shop announcement, shop Policies (returns, shipping, etc.), thank-you email (post-purchase), suggested Brand Palette (optional — text only).
+  const prompt = `The product I want to sell on Etsy is ${_product}. My target audience is ${_targetAudience}. The tone of this product listing is ${_tone}. The aesthetics and vibes of the product is ${_style}, and the product listing should reflect that. Our price range and price positioning is ${_priceRange} Give me SEO-optimized Product Title, Product Description, 13 Etsy SEO-optimized Tags, Pricing Suggestion for this product and why, Thank You and Review Messages (post-purchase).
   
   Respond with clearly labeled sections in the following format:
 
-1. Shop Name Ideas:
-[list of ideas]
-
-2. Shop Banner Visual Description:
+1. Product Title:
 [your text here]
 
-3. Shop Icon Visual Description:
+2. Product Description:
 [your text here]
 
-4. Shop Announcement:
+3. 13 Etsy SEO-optimized Tags:
 [your text here]
 
-5. Shop Policies:
+4. Pricing Suggestions:
 [your text here]
 
-6. Thank-You Email (post-purchase):
+5. Thank You + Review Messages:
 [your text here]
-
-7. Suggest Brand Color Palette:
-[your text here]`
+`
   console.log("prompt", prompt);
 
   const res = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -46,7 +43,7 @@ export async function createShop(formData) {
     body: JSON.stringify({
       model: 'gpt-3.5-turbo', 
       messages: [
-        {role: 'system', content: ' you are top 0.01% Etsy seller, making huge sales. You are helping me create a new Etsy shop'},
+        {role: 'system', content: ' you are top 0.01% Etsy seller, making huge sales. You are helping me create a new winning Etsy product listing'},
         {role: 'user', content: prompt}
       ]
     })
@@ -57,6 +54,6 @@ export async function createShop(formData) {
   const gptResponse = data.choices?.[0]?.message?.content;
   console.log("gptResponse", gptResponse);
   return gptResponse || "Something went wrong"
-  // return data.choices?.[0]?.message?.content || "Something went wrong."
-  // Optional: Save to database, etc.
+//   return data.choices?.[0]?.message?.content || "Something went wrong."
+//   Optional: Save to database, etc.
 }

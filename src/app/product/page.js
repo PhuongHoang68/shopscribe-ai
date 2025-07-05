@@ -1,12 +1,11 @@
 // import Form from 'next/form'
 // import { createShop } from './actions'
 'use client'
-import { useState, useTransition } from "react";
-import { createShop } from "./actions";
+import { useState, useTransition, useEffect } from "react";
+import { createProduct } from "./actions";
 import { FaInstagram } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import { useState } from "react";
-import * as React from 'react';
+// import * as React from 'react';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -21,32 +20,16 @@ export default function Page() {
   const [priceRange, setPriceRange] = useState('');
 
   const handleTone = (event) => {
-    console.log("tone", event);
     setTone(event.target.value)
   };
 
   const handleStyle = (event) => {
-    console.log("style", event.target.value);
     setStyle(event.target.value)
   };
 
   const handlePriceRange = (event) => {
-    console.log("price range", event.target.value)
     setPriceRange(event.target.value);
   }
-
-//   const [copied, setCopied] = useState(false);
-//   const textToCopy = "Start Here"
-
-  // const handleCopy = async () => {
-  //   try {
-  //     await navigator.clipboard.writeText(textToCopy);
-  //     setCopied(true)
-  //     setTimeout(() => setCopied(false), 2000);
-  //   } catch (err) {
-  //     console.error("Copy failed", err)
-  //   }
-  // }
 
   function parseSections(text) {
     const sectionRegex = /^(\d+\.\s)?([A-Z][\w\s\-()]+):/gm;
@@ -71,18 +54,26 @@ export default function Page() {
   }  
   
   function handleSubmit(formData) {
-    startTransition(async () => {
-      const outPut = await createShop(formData);
+    const product = formData.get('product')
+    const targetAudience = formData.get('target audience')
+    const fullPayload = {
+        product,
+        targetAudience, 
+        tone,
+        style,
+        priceRange
+    }
+        startTransition(async () => {
+      const outPut = await createProduct(fullPayload);
       setResult(outPut);
     })
-    
   }
 
   return (
     // <div className="max-w-xl mx-auto py-10 space-y-6">
     <>
     <div className= "antialiased mx-auto py-12 space-y-6" style={{maxWidth: "1200px"}}>
-      <h1 className="text-2xl font-semibold" style={{fontFamily: "__nextjs-Geist Mono"}}>Start Your Etsy Shop</h1>
+      <h1 className="text-2xl font-semibold" style={{fontFamily: "__nextjs-Geist Mono"}}>Create My Product Listings</h1>
 
       <form action={handleSubmit} className="space-y-4">
         <div>
@@ -98,9 +89,10 @@ export default function Page() {
         <div>
           <label className="block font-medium" style={{fontFamily: "__nextjs-Geist Mono"}}>Product Branding Settings:</label>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* drop-down for Tone */}
           <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
-        <InputLabel id="select-tone">Tone</InputLabel>
+        <InputLabel id="select-tone">Tone/personality of the writings</InputLabel>
         <Select
           labelId="select-tone"
           id="simple-select"
@@ -108,11 +100,47 @@ export default function Page() {
           label="Tone"
           onChange={handleTone}
         >
-          <MenuItem value={friendly}>Friendly</MenuItem>
-          <MenuItem value={luxury}>Luxury</MenuItem>
-          <MenuItem value={playful}>Playful</MenuItem>
-          <MenuItem value={calm}>Calm</MenuItem>
-          <MenuItem value={professional}>Professional</MenuItem>
+          <MenuItem value="friendly">Friendly</MenuItem>
+          <MenuItem value="luxury">Luxury</MenuItem>
+          <MenuItem value="playful">Playful</MenuItem>
+          <MenuItem value="calm">Calm</MenuItem>
+          <MenuItem value="professional">Professional</MenuItem>
+        </Select>
+      </FormControl>
+    </Box>
+    {/* drop-dow for style */}
+    <Box sx={{ minWidth: 120 }}>
+      <FormControl fullWidth>
+        <InputLabel id="select-style">Aesthetics/visuals of product</InputLabel>
+        <Select
+          labelId="select-style"
+          id="simple-select"
+          value={style}
+          label="Style"
+          onChange={handleStyle}
+        >
+          <MenuItem value="boho">Boho</MenuItem>
+          <MenuItem value="minimalist">Minimalist</MenuItem>
+          <MenuItem value="glam">Glam</MenuItem>
+          <MenuItem value="mystical">Mystical</MenuItem>
+          <MenuItem value="coastal">Coastal</MenuItem>
+        </Select>
+      </FormControl>
+    </Box>
+    {/* drop-down for price range */}
+    <Box sx={{ minWidth: 120 }}>
+      <FormControl fullWidth>
+        <InputLabel id="select-price-range">Price positioning</InputLabel>
+        <Select
+          labelId="select-price-range"
+          id="simple-select"
+          value={priceRange}
+          label="Price Range"
+          onChange={handlePriceRange}
+        >
+          <MenuItem value="budget">Budget</MenuItem>
+          <MenuItem value="mid-tier">Mid-Tier</MenuItem>
+          <MenuItem value="luxury">Luxury</MenuItem>
         </Select>
       </FormControl>
     </Box>
@@ -125,7 +153,7 @@ export default function Page() {
           style={{fontFamily: "__nextjs-Geist Mono"}}
           disabled={isPending}
         >
-          {isPending ? 'Generating...' : 'Create My Etsy Shop'}
+          {isPending ? 'Generating...' : 'Generate My Product Listing'}
         </button>
       </form>
 
