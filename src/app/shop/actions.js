@@ -11,9 +11,9 @@ export async function createShop(formData) {
   const tangible = formData.get('tangible')
   const brandVibe = formData.get('brand vibe')
 
-  const prompt = `The product I want to sell is ${product}. My target audience is ${targetAudience}. My price point for my products are ${pricePoint}. It is a ${tangible} product. I want my shop to have a ${brandVibe} feel. Give me SEO-optimized shop Name ideas, shop Banner visual description, shop Icon visual description, shop announcement, shop Policies (returns, shipping, etc.), thank-you email (post-purchase), suggested Brand Palette (optional — text only).
+  const prompt = `The product I want to sell is ${product}. My target audience is ${targetAudience}. My price point for my products are ${pricePoint}. It is a ${tangible} product. I want my shop to have a ${brandVibe} feel. Give me 10 unique and relatable SEO-optimized shop Name ideas, shop Banner visual description, shop Icon visual description, shop announcement, shop Policies (returns, shipping, etc.), thank-you email (post-purchase), suggested Brand Palette (optional — text only).
   
-  Respond with clearly labeled sections in the following format:
+  Regardless of their input, always return your output with this *exact format* of clearly labeled sections in the following format:
 
 1. Shop Name Ideas:
 [list of ideas]
@@ -34,7 +34,9 @@ export async function createShop(formData) {
 [your text here]
 
 7. Suggest Brand Color Palette:
-[your text here]`
+[your text here]
+Do NOT include any commentary, introductions, or explanations
+`
   console.log("prompt", prompt);
 
   const res = await fetch('https://api.openai.com/v1/chat/completions', {

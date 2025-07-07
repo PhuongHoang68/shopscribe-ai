@@ -25,6 +25,7 @@ export default function Page() {
   const [style, setStyle] = useState('');
   const [priceRange, setPriceRange] = useState('');
 
+  //breadcrumbs
   const StyledBreadcrumb = styled(Chip)(({ theme }) => {
     return {
       backgroundColor: theme.palette.grey[100],
@@ -54,7 +55,9 @@ export default function Page() {
     event.preventDefault();
     console.info('You clicked a breadcrumb.');
   }
+  //
 
+  //drop-downs
   const handleTone = (event) => {
     setTone(event.target.value)
   };
@@ -66,7 +69,10 @@ export default function Page() {
   const handlePriceRange = (event) => {
     setPriceRange(event.target.value);
   }
+  //
 
+
+  //result formating (sections and titles)
   function parseSections(text) {
     const sectionRegex = /^(\d+\.\s)?([A-Z][\w\s\-()]+):/gm;
     const matches = [...text.matchAll(sectionRegex)];
@@ -89,6 +95,7 @@ export default function Page() {
     return sections;
   }  
   
+  //api call 
   function handleSubmit(formData) {
     const product = formData.get('product')
     const targetAudience = formData.get('target audience')
@@ -99,12 +106,24 @@ export default function Page() {
         style,
         priceRange
     }
-        startTransition(async () => {
+
+    startTransition(async () => {
       const outPut = await createProduct(fullPayload);
       setResult(outPut);
+      if (outPut) {
+        localStorage.setItem("Product GPT response", outPut)
+      }
+      console.log("Product saved to localStorage", outPut)
     })
   }
 
+  //loading result from loclStorage if page reloads
+  useEffect(() => {
+    const stored = localStorage.getItem("Product GPT response")
+    if (stored) {
+      setResult(stored)
+    }
+  }, [])
   return (
     // <div className="max-w-xl mx-auto py-10 space-y-6">
     <>
@@ -177,7 +196,8 @@ export default function Page() {
           <MenuItem value="minimalist">Minimalist</MenuItem>
           <MenuItem value="glam">Glam</MenuItem>
           <MenuItem value="mystical">Mystical</MenuItem>
-          <MenuItem value="coastal">Coastal</MenuItem>
+          <MenuItem value="functional">Functional</MenuItem>
+          <MenuItem value="beachy">Beachy</MenuItem>
         </Select>
       </FormControl>
     </Box>

@@ -13,9 +13,9 @@ export async function createProduct(fullPayload) {
   const _priceRange = fullPayload.priceRange
   console.log("VALUES:", _product, _targetAudience, _tone, _style, _priceRange)
 
-  const prompt = `The product I want to sell on Etsy is ${_product}. My target audience is ${_targetAudience}. The tone of this product listing is ${_tone}. The aesthetics and vibes of the product is ${_style}, and the product listing should reflect that. Our price range and price positioning is ${_priceRange} Give me SEO-optimized Product Title, Product Description, SEO-optimized Tags, Pricing Suggestions for this product and why, Thank You Message and Review Message (post-purchase).
+  const prompt = `The product I want to sell on Etsy is ${_product}. My target audience is ${_targetAudience}. The tone of this product listing is ${_tone}. The aesthetics and vibes of the product is ${_style}, and the product listing should reflect that. Our price range and price positioning is ${_priceRange} Give me SEO-optimized Product Title, Product Description, SEO-optimized Hash Tags, Pricing Suggestions for this product and why, Thank You Message and Review Message (post-purchase).
   
-  Respond with clearly labeled sections in the following format:
+  Regardless of their input, always return your output with this *exact format* of clearly labeled sections in the following format:
 
 1. Product Title:
 [your text here]
@@ -23,7 +23,7 @@ export async function createProduct(fullPayload) {
 2. Product Description:
 [your text here]
 
-3. SEO-optimized Tags:
+3. SEO-optimized Hash Tags:
 [your text here]
 
 4. Pricing Suggestions:
@@ -34,6 +34,7 @@ export async function createProduct(fullPayload) {
 
 6. Review Message:
 [your text here]
+Do NOT include any commentary, introductions, or explanations
 `
   console.log("prompt", prompt);
 

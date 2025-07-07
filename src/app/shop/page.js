@@ -1,5 +1,5 @@
 'use client'
-import { useState, useTransition } from "react";
+import { useState, useTransition, useEffect } from "react";
 import { createShop } from "./actions";
 import { FaInstagram } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
@@ -81,9 +81,20 @@ export default function Page() {
     startTransition(async () => {
       const outPut = await createShop(formData);
       setResult(outPut);
+      if (outPut) {
+        localStorage.setItem("Shop GPT response", outPut)
+      }
+      console.log("Shop saved to localStorage", outPut)
     })
-    
   }
+
+  //loading result from localStorage if page reloads
+  useEffect(() => {
+    const stored = localStorage.getItem("Shop GPT response")
+    if (stored) {
+      setResult(stored)
+    }
+  }, [])
 
   return (
     // <div className="max-w-xl mx-auto py-10 space-y-6">
