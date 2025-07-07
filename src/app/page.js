@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { FaInstagram } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
         /> */}
         <h1 style={{fontSize: "50px", fontWeight: "lighter"}}>ShopScribe-AI</h1>
         <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
+        <Link href="/shop">
           <li>
             Build the Etsy shop of your dreams
             {/* <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
@@ -23,9 +25,12 @@ export default function Home() {
             </code> */}
             .
           </li>
+          </Link>
+          <Link href="/product">
           <li className="tracking-[-.01em]">
             Create product listings instantly.
           </li>
+          </Link>
         </ol>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
@@ -73,6 +78,7 @@ export default function Home() {
           <FaInstagram size={16} aria-hidden />
           Check us out on IG
         </a>
+        
       </footer>
     </div>
   );

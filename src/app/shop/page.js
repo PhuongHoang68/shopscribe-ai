@@ -1,11 +1,9 @@
-// import Form from 'next/form'
-// import { createShop } from './actions'
 'use client'
 import { useState, useTransition } from "react";
 import { createShop } from "./actions";
 import { FaInstagram } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-// import { useState } from "react";
+import Link from "next/link";
 
 export default function Page() {
   const [result, setResult] = useState('');
@@ -61,28 +59,28 @@ export default function Page() {
 
       <form action={handleSubmit} className="space-y-4">
         <div>
-          <label className="block font-medium" style={{fontFamily: "__nextjs-Geist Mono"}}>Product</label>
-          <input name="product" className="w-full border px-3 py-2" required />
+          <label className="block font-medium" style={{fontFamily: "__nextjs-Geist Mono"}}>What are your main product(s)?</label>
+          <input style={{marginBottom: "10px"}} name="product" className="w-full border px-3 py-2" required />
         </div>
 
         <div>
-          <label className="block font-medium" style={{fontFamily: "__nextjs-Geist Mono"}}>Target Audience</label>
-          <input name="target audience" className="w-full border px-3 py-2" required />
+          <label className="block font-medium" style={{fontFamily: "__nextjs-Geist Mono"}}>Who is your main Target Audience?</label>
+          <input style={{marginBottom: "10px"}} name="target audience" className="w-full border px-3 py-2" required />
         </div>
 
         <div>
-          <label className="block font-medium" style={{fontFamily: "__nextjs-Geist Mono"}}>Price Point</label>
-          <input name="price point" className="w-full border px-3 py-2" required />
+          <label className="block font-medium" style={{fontFamily: "__nextjs-Geist Mono"}}>What is your Price Positioning? (e.g., budget, mid-tier, luxury)</label>
+          <input style={{marginBottom: "10px"}} name="price point" className="w-full border px-3 py-2" required />
         </div>
 
         <div>
-          <label className="block font-medium" style={{fontFamily: "__nextjs-Geist Mono"}}>Tangible or Digital</label>
-          <input name="tangible" className="w-full border px-3 py-2" required />
+          <label className="block font-medium" style={{fontFamily: "__nextjs-Geist Mono"}}>Are your products Tangible or Digital?</label>
+          <input style={{marginBottom: "10px"}} name="tangible" className="w-full border px-3 py-2" required />
         </div>
 
         <div>
-          <label className="block font-medium" style={{fontFamily: "__nextjs-Geist Mono"}}>Brand Vibe</label>
-          <input name="brand vibe" className="w-full border px-3 py-2" required />
+          <label className="block font-medium" style={{fontFamily: "__nextjs-Geist Mono"}}>Your brand personality. (e.g., whimsical, minimalist, luxurious)</label>
+          <input style={{marginBottom: "50px"}} name="brand vibe" className="w-full border px-3 py-2" required />
         </div>
 
         <button
@@ -111,22 +109,31 @@ export default function Page() {
     {/* navigation to ideogram, canva, or product page */}
     <p style={{fontFamily: "__nextjs-Geist Mono", paddingTop: "85px"}}>Once you have copied your Shop Banner Visual Description and Shop Icon Visual Description, follow the links below to AI-generate your shop banner & icon:</p>
     <div className="flex gap-4 items-center flex-col sm:flex-row" style={{paddingTop: "15px"}}>
-    <button className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://ideogram.ai/t/explore"
-            target="_blank"
-            rel="noopener noreferrer">Ideogram
+    <a 
+      href="https://ideogram.ai/t/explore"
+      target="_blank"
+      rel="noopener noreferrer"
+      >
+    <button className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto">
+      Ideogram
     </button>
-    <button className="rounded-full border border-solid border-black/[.08] dark:border-black/[.145] transition-colors flex bg-background items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://www.canva.com/"
-            target="_blank"
-            rel="noopener noreferrer">Canva
+    </a>
+    <a 
+    href="https://www.canva.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+    >
+    <button className="rounded-full border border-solid border-black/[.08] dark:border-black/[.145] transition-colors flex bg-background items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]">
+      Canva
     </button>
+    </a>
+    <Link href="/product">
     <button className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-end bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="/product"
             style={{marginLeft: "584px"}}
             target="_blank"
             rel="noopener noreferrer">My Product Listings
     </button>
+    </Link>
     </div>
   </div>
 )

@@ -11,7 +11,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-
+import Link from "next/link";
 export default function Page() {
   const [result, setResult] = useState('');
   const [isPending, startTransition] = useTransition();
@@ -161,7 +161,7 @@ export default function Page() {
       {/* parsing results  */}
       {result && (
   <div className="mt-6 p-4 border bg-gray-50 space-y-4" style={{padding: "40px", marginTop: "56px", fontFamily: "__nextjs-Geist Mono"}}>
-    <h2 className="text-xl font-semibold mb-4">🛍️ Your Etsy Shop Blueprint</h2>
+    <h2 className="text-xl font-semibold mb-4">🛍️ Your Etsy Product Listing</h2>
     {Object.entries(parseSections(result)).map(([section, content]) => (
       <div key={section}>
         <h3 className="font-bold mb-1">{section}</h3>
@@ -171,24 +171,24 @@ export default function Page() {
 
 
     {/* navigation to ideogram, canva, or product page */}
-    <p style={{fontFamily: "__nextjs-Geist Mono", paddingTop: "85px"}}>Once you have copied your Shop Banner Visual Description and Shop Icon Visual Description, follow the links below to AI-generate your shop banner & icon:</p>
-    <div className="flex gap-4 items-center flex-col sm:flex-row" style={{paddingTop: "15px"}}>
-    <button className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://ideogram.ai/t/explore"
-            target="_blank"
-            rel="noopener noreferrer">Ideogram
+    <p style={{fontFamily: "__nextjs-Geist Mono", paddingTop: "95px"}}>Ready to generate your AI mock-ups?</p>
+    <div className="flex gap-4 items-center flex-col sm:flex-row" style={{paddingTop: "5px"}}>
+    <a 
+    href="https://placeit.net/"
+    target="_blank"
+    rel="noopener noreferrer"
+    >
+    <button className="rounded-full border border-solid border-black/[.08] dark:border-black/[.145] transition-colors flex bg-background items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]">
+      Place It
     </button>
-    <button className="rounded-full border border-solid border-black/[.08] dark:border-black/[.145] transition-colors flex bg-background items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://www.canva.com/"
-            target="_blank"
-            rel="noopener noreferrer">Canva
-    </button>
+    </a>
+    <Link href="/shop">
     <button className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-end bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="/product"
             style={{marginLeft: "584px"}}
             target="_blank"
-            rel="noopener noreferrer">My Product Listings
+            rel="noopener noreferrer">Go To Shop Creation
     </button>
+    </Link>
     </div>
   </div>
 )
