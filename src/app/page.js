@@ -7,27 +7,15 @@ import EastOutlinedIcon from '@mui/icons-material/EastOutlined';
 export default function Home() {
   return (
     <>
-    <div className="w-full flex justify-center">
-  <div className="w-[91%] px-4 sm:px-10 rounded-lg">
-    {/* <img
-      src="/Hero1.png"
-      alt="Etsy Hero Banner"
-      className="w-full h-auto object-cover rounded-lg mb-10"
-    /> */}
-      <main className="flex flex-col gap-10 items-center sm:items-start bg-[#F8F4EC] rounded-lg">
-      <img
-      src="/Hero1.png"
-      alt="Etsy Hero Banner"
-      className="w-full h-auto object-cover rounded-lg mb-10"
-    />
-        {/* <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        /> */}
+    <div className="w-full flex flex-col gap-10">
+    <img
+        src="/Hero1.png"
+        alt="Etsy Hero Banner"
+        className="w-full max-h-85 object-cover rounded-lg mb-10"
+      />
+
+      <main className="flex flex-col gap-10 items-center sm:items-start">
+
 
         <h1 style={{fontSize: "50px", fontWeight: "lighter"}}>ShopScribe-AI</h1>
         <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
@@ -74,29 +62,7 @@ export default function Home() {
           </a> */}
         </div>
       </main>
-      {/* <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="mailto:peyton.hoang@gmail.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <MdEmail size={16} aria-hidden />
-          Contact Us
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <FaInstagram size={16} aria-hidden />
-          Check us out on IG
-        </a>
-        
-      </footer> */}
       </div>
-    </div>
     </>
   );
 }
