@@ -2,6 +2,7 @@ import Image from "next/image";
 import { FaInstagram } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import Link from "next/link";
+import EastOutlinedIcon from '@mui/icons-material/EastOutlined';
 
 export default function Home() {
   return (
@@ -19,16 +20,17 @@ export default function Home() {
         <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
         <Link href="/shop">
           <li>
-            Build the Etsy shop of your dreams
+            Build the Etsy shop of your dreams  
+            <EastOutlinedIcon style={{marginLeft :"5px"}} fontSize="small" />
             {/* <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
               src/app/page.js
             </code> */}
-            .
           </li>
           </Link>
           <Link href="/product">
           <li className="tracking-[-.01em]">
-            Create product listings instantly.
+            Create product listings instantly
+            <EastOutlinedIcon style={{marginLeft :"5px"}} fontSize="small" />
           </li>
           </Link>
         </ol>
@@ -62,7 +64,7 @@ export default function Home() {
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          href="mailto:peyton.hoang@gmail.com"
           target="_blank"
           rel="noopener noreferrer"
         >

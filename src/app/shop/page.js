@@ -4,6 +4,11 @@ import { createShop } from "./actions";
 import { FaInstagram } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import Link from "next/link";
+import { emphasize, styled } from '@mui/material/styles';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Chip from '@mui/material/Chip';
+import HomeIcon from '@mui/icons-material/Home';
+// import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export default function Page() {
   const [result, setResult] = useState('');
@@ -20,6 +25,35 @@ export default function Page() {
   //     console.error("Copy failed", err)
   //   }
   // }
+  const StyledBreadcrumb = styled(Chip)(({ theme }) => {
+    return {
+      backgroundColor: theme.palette.grey[100],
+      height: theme.spacing(3),
+      color: (theme.vars || theme).palette.text.primary,
+      fontWeight: theme.typography.fontWeightRegular,
+      '&:hover, &:focus': {
+        backgroundColor: emphasize(theme.palette.grey[100], 0.06),
+        ...theme.applyStyles('dark', {
+          backgroundColor: emphasize(theme.palette.grey[800], 0.06),
+        }),
+      },
+      '&:active': {
+        boxShadow: theme.shadows[1],
+        backgroundColor: emphasize(theme.palette.grey[100], 0.12),
+        ...theme.applyStyles('dark', {
+          backgroundColor: emphasize(theme.palette.grey[800], 0.12),
+        }),
+      },
+      ...theme.applyStyles('dark', {
+        backgroundColor: theme.palette.grey[800],
+      }),
+    };
+  });
+
+  function handleClick(event) {
+    event.preventDefault();
+    console.info('You clicked a breadcrumb.');
+  }
 
   function parseSections(text) {
     const sectionRegex = /^(\d+\.\s)?([A-Z][\w\s\-()]+):/gm;
@@ -55,6 +89,24 @@ export default function Page() {
     // <div className="max-w-xl mx-auto py-10 space-y-6">
     <>
     <div className= "antialiased mx-auto py-12 space-y-6" style={{maxWidth: "1200px"}}>
+    <div role="presentation" onClick={handleClick}>
+      <Breadcrumbs aria-label="breadcrumb">
+        {/* <Link href="/product"> */}
+        <StyledBreadcrumb
+          component={Link}
+          href="/"
+          label="Home"
+          icon={<HomeIcon fontSize="small" />}
+        />
+        {/* </Link> */}
+        <StyledBreadcrumb component="a" href="#" label="Shop" />
+        {/* <StyledBreadcrumb
+          label="Accessories"
+          deleteIcon={<ExpandMoreIcon />}
+          onDelete={handleClick}
+        /> */}
+      </Breadcrumbs>
+    </div>
       <h1 className="text-2xl font-semibold" style={{fontFamily: "__nextjs-Geist Mono"}}>Start Your Etsy Shop</h1>
 
       <form action={handleSubmit} className="space-y-4">
@@ -144,7 +196,7 @@ export default function Page() {
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          href="mailto:peyton.hoang@gmail.com"
           target="_blank"
           rel="noopener noreferrer"
         >
