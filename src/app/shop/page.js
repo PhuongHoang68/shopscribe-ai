@@ -8,6 +8,14 @@ import { emphasize, styled } from '@mui/material/styles';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Chip from '@mui/material/Chip';
 import HomeIcon from '@mui/icons-material/Home';
+import {
+  ClerkProvider,
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from '@clerk/nextjs';
 // import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export default function Page() {
@@ -99,25 +107,30 @@ export default function Page() {
   return (
     // <div className="max-w-xl mx-auto py-10 space-y-6">
     <>
-    <div className= "antialiased mx-auto py-12 space-y-6" style={{maxWidth: "1200px"}}>
-    <div role="presentation" onClick={handleClick}>
-      <Breadcrumbs aria-label="breadcrumb">
-        {/* <Link href="/product"> */}
-        <StyledBreadcrumb
-          component={Link}
-          href="/"
-          label="Home"
-          icon={<HomeIcon fontSize="small" />}
-        />
-        {/* </Link> */}
-        <StyledBreadcrumb component="a" href="#" label="Shop" />
-        {/* <StyledBreadcrumb
-          label="Accessories"
-          deleteIcon={<ExpandMoreIcon />}
-          onDelete={handleClick}
-        /> */}
-      </Breadcrumbs>
-    </div>
+    <div className= "antialiased mx-auto py-12 space-y-6">
+    <div className="flex justify-between items-center w-full mb-6">
+  {/* Left-aligned Breadcrumbs */}
+  <div onClick={handleClick}>
+    <Breadcrumbs aria-label="breadcrumb">
+      <StyledBreadcrumb
+        component={Link}
+        href="/"
+        label="Home"
+        icon={<HomeIcon fontSize="small" />}
+      />
+      <StyledBreadcrumb component="a" href="#" label="Shop" />
+    </Breadcrumbs>
+  </div>
+
+  {/* Right-aligned UserButton */}
+  <div>
+    <SignedIn>
+      <UserButton />
+    </SignedIn>
+  </div>
+</div>
+
+    <div className="rounded-lg" style={{padding: "120px"}}>
       <h1 className="text-2xl font-semibold" style={{fontFamily: "__nextjs-Geist Mono"}}>Start Your Etsy Shop</h1>
 
       <form action={handleSubmit} className="space-y-4">
@@ -149,17 +162,18 @@ export default function Page() {
         <button
           type="submit"
           className="w-full bg-black text-white py-2 font-medium"
-          style={{fontFamily: "__nextjs-Geist Mono"}}
+          style={{fontFamily: "__nextjs-Geist Mono", marginBottom :"10px"}}
           disabled={isPending}
         >
           {isPending ? 'Generating...' : 'Create My Etsy Shop'}
         </button>
       </form>
+      </div>
 
 
       {/* parsing results  */}
       {result && (
-  <div className="mt-6 p-4 border bg-gray-50 space-y-4" style={{padding: "40px", marginTop: "56px", fontFamily: "__nextjs-Geist Mono"}}>
+  <div className="mt-6 p-4 border bg-gray-50 space-y-4" style={{padding: "40px", marginTop: "56px", marginBottom:"40px", fontFamily: "__nextjs-Geist Mono"}}>
     <h2 className="text-xl font-semibold mb-4">🛍️ Your Etsy Shop Blueprint</h2>
     {Object.entries(parseSections(result)).map(([section, content]) => (
       <div key={section}>
@@ -204,7 +218,7 @@ export default function Page() {
 
       </div>
       {/* footer */}
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
+      {/* <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           href="mailto:peyton.hoang@gmail.com"
@@ -223,7 +237,7 @@ export default function Page() {
           <FaInstagram size={16} aria-hidden />
           Check us out on IG
         </a>
-      </footer>
+      </footer> */}
       </>
   )
 }
