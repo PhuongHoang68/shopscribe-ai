@@ -8,8 +8,8 @@ import {
   SignedOut,
   UserButton,
 } from '@clerk/nextjs';
-import { FaInstagram } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
+import Footer from "../components/footer"
+import Header from "../components/header"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,61 +28,28 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider
-      fallbackRedirectUrl={process.env.NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL}
-      signInFallbackRedirectUrl={process.env.NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL}
-      signUpFallbackRedirectUrl={process.env.NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL}
-    >
-      <html lang="en">
+    <ClerkProvider   fallbackRedirectUrl={process.env.NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL}
+    signInFallbackRedirectUrl={process.env.NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL}
+    signUpFallbackRedirectUrl={process.env.NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL}>
+    <html lang="en">
       <body
-      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-    >
-          {/* Grid layout: header, main, footer */}
-          <div className="w-full flex justify-center min-h-screen" style={{ backgroundColor: "#FAFAFA" }}>
-        <div className="w-[78%] flex flex-col min-h-screen" style={{ backgroundColor: "	#FAF5F0" }}       >
-            
-            {/* Optional Header */}
-            {/* 
-            <header className="flex justify-end items-center p-4 gap-4 h-16">
-              <SignedOut>
-                <SignInButton fallbackRedirectUrl="/shop" />
-                <SignUpButton fallbackRedirectUrl="/shop" />
-              </SignedOut>
-              <SignedIn>
-                <UserButton />
-              </SignedIn>
-            </header>
-            */}
-
-            {/* Page Content */}
-            {children}
-
-            {/* Footer */}
-            <footer className="mt-auto w-[95%] mx-auto bg-white rounded-t-lg py-4 px-6 flex flex-wrap gap-6 items-center justify-center max-w-full box-border">
-              <a
-                className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-                href="mailto:your@email.com"
-              >
-                <MdEmail size={16} aria-hidden />
-                Contact Us
-              </a>
-              <a
-                className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-                href="https://instagram.com/yourhandle"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaInstagram size={16} aria-hidden />
-                Check us out on IG
-              </a>
-            </footer>
-
-</div>
-</div>
-
-          {/* </div> */}
-        </body>
-      </html>
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <Header></Header>
+        {/* <header className="flex justify-end items-center p-4 gap-4 h-16">
+            <SignedOut>
+              <SignInButton fallbackRedirectUrl="/shop"/>
+              <SignUpButton fallbackRedirectUrl="/shop"/>
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+          </header> */}
+          
+        {children}
+        <Footer></Footer>
+      </body>
+    </html>
     </ClerkProvider>
   );
 }
