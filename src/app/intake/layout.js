@@ -8,27 +8,27 @@ export default function IntakeLayout({ children }) {
   const isProduct = path?.endsWith('/create-product');
 
   return (
-    // <div className="mx-auto mt-8 border rounded-lg shadow-lg">
 <div className="relative min-h-[85vh]">
       <div className="intake-background row-span-full"></div>
       <div className="flex items-start content-on-hero">
+    <div className="w-[600px] mx-4 mt-8 rounded-xl shadow-lg overflow-hidden" style={{height: "650px"}}>
+    {/* <nav className='tabs-bar border-b border-[#ECECEC] px-4 pt-4'> */}
+    <nav className="tabs-bar relative px-4 pt-4 h-[52px]">
 
-    <div className="w-[600px] mx-4 mt-8  border-[#ECECEC] rounded-lg shadow-lg bg-white" style={{height: "650px"}}>
-    <nav className='tabs-bar'>
-      {/* <nav className="flex border-b px-6 py-4"> */}
       
 
         {[
           { label: 'Shop', href: '/intake/create-shop', active: isShop },
           { label: 'Product', href: '/intake/create-product', active: isProduct }
-        ].map(tab => (
+        ]
+        .map(tab => (
           <Link
             key={tab.href}
             href={tab.href}
-            className={`px-4 py-2 -mb-px font-medium ${
+            className={`w-[100px] px-6 text-sm font-medium transition-all ${
               tab.active
-              ? 'bg-white border-x border-t border-[#ECECEC] text-blue-600 rounded-t-xl' // Active
-              : 'bg-transparent text-gray-600 hover:bg-[#DFDFDF] hover:text-blue-600 rounded-t-md' // Inactive + hover
+              ? 'flex items-center justify-center bg-white border border-b-0 py-3 border-[#ECECEC] text-blue-600 rounded-t-xl z-10 '
+              : 'flex items-center justify-center bg-[#FAFAFA] text-gray-400 py-2 hover:bg-[#F0F0F0] hover:text-blue-500 rounded-t-md'
             }`}
           >
             {tab.label}
@@ -36,7 +36,7 @@ export default function IntakeLayout({ children }) {
         ))}
       </nav>
 
-      <div className="p-4" style={{height: "650px"}}>
+      <div className="p-6 bg-white rounded-t-md" style={{height: "600px"}}>
       {/* <div className='content-box'> */}
         {children}
       </div>

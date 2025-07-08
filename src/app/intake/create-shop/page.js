@@ -38,10 +38,10 @@ export default function ShopPage() {
   }
   return (
     // <div className="max-w-xl mx-auto py-10 space-y-6">
-    <div className= "antialiased py-3 space-y-6">
+    <div>
       <h1 className="text-2xl font-semibold">Start Your Etsy Shop</h1>
 
-      <form action={handleSubmit} className="space-y-4">
+      <form action={handleSubmit} className="mt-6 space-y-4">
         <div>
           <label className="block font-medium">Product</label>
           <input name="product" className="w-full border px-3 py-2" required />
