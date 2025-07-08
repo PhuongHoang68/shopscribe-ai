@@ -28,7 +28,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/app/layout.js"  ],
+, "src/app/layout.js", "src/app/intake/layout.js", "src/app/intake/create-shop/page.js"  ],
   "exclude": [
     "node_modules"
   ]
