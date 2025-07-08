@@ -8,9 +8,15 @@ export default function IntakeLayout({ children }) {
   const isProduct = path?.endsWith('/create-product');
 
   return (
-    <div className="mx-auto mt-8 border rounded-lg shadow-lg">
+    // <div className="mx-auto mt-8 border rounded-lg shadow-lg">
+<div className="relative min-h-[85vh]">
       <div className="intake-background row-span-full"></div>
-      <nav className="flex border-b content-on-hero pl-[6%] pt-[13%]">
+
+      {/* <nav className="flex border-b content-on-hero pl-[6%] pt-[13%]"> */}
+      <div className="flex items-start content-on-hero">
+    <div className="w-[600px] mx-4 mt-8 mb-8 border rounded-lg shadow-lg bg-white" style={{height: "650px"}}>
+      <nav className="flex border-b px-6 py-4">
+
         {[
           { label: 'Shop', href: '/intake/create-shop', active: isShop },
           { label: 'Product', href: '/intake/create-product', active: isProduct }
@@ -29,9 +35,11 @@ export default function IntakeLayout({ children }) {
         ))}
       </nav>
 
-      <div className="p-4 content-on-hero">
+      <div className="p-4" style={{height: "650px"}}>
         {children}
       </div>
+    </div>
+    </div>
     </div>
   );
 }

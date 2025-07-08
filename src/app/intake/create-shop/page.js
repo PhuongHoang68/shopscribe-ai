@@ -38,7 +38,7 @@ export default function ShopPage() {
   }
   return (
     // <div className="max-w-xl mx-auto py-10 space-y-6">
-    <div className= "antialiased mx-auto py-10 space-y-6" style={{maxWidth: "1200px"}}>
+    <div className= "antialiased py-3 space-y-6">
       <h1 className="text-2xl font-semibold">Start Your Etsy Shop</h1>
 
       <form action={handleSubmit} className="space-y-4">
