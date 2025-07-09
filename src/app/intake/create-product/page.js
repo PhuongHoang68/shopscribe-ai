@@ -7,8 +7,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { emphasize, styled } from '@mui/material/styles';
-import Chip from '@mui/material/Chip';
+// import { emphasize, styled } from '@mui/material/styles';
+// import Chip from '@mui/material/Chip';
 
 
 export default function ProductPage() {
@@ -205,7 +205,7 @@ export default function ProductPage() {
 
         <button
           type="submit"
-          className="w-full bg-black text-white mt-3 py-2 font-medium rounded-full"
+          className="w-full bg-gradient-to-r from-blue-300 via-blue-400 to-blue-600 shadow-sm text-white mt-3 py-2 font-medium rounded-full hover:from-blue-600 hover:via-blue-400 hover:to-blue-200 hover:shadow-lg"
           disabled={isPending}
         >
           {isPending ? 'Generating...' : 'Generate My Product Listing'}

@@ -35,6 +35,7 @@ height: 70px;
 display: flex;
 justify-content:space-between;
 padding: 28px 46px 28px 46px;
+align-items: center;
 }
 
 .sign-in{
@@ -76,5 +77,11 @@ padding: 28px 46px 28px 46px;
   align-items: flex-end;
   /* padding-left: 18px; */
   /* background-color: #fff; */
+}
+
+.cl-avatarBox {
+  margin-top: 9px;
+  width: 2.36rem;
+  height: 2.36rem;
 }
 

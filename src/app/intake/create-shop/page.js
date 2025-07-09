@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 'use client'
 import { useState, useTransition, useEffect } from "react";
 import { createShop } from "./actions";
@@ -93,7 +94,7 @@ export default function ShopPage() {
 
           <button
             type="submit"
-            className="w-full bg-black text-white mt-3 py-2 font-medium rounded-full"
+            className="w-full bg-gradient-to-r from-blue-300 via-blue-400 to-blue-600 shadow-sm text-white mt-3 py-2 font-medium rounded-full hover:from-blue-600 hover:via-blue-400 hover:to-blue-200 hover:shadow-lg"
             disabled={isPending}
           >
             {isPending ? 'Generating...' : 'Create My Etsy Shop'}
