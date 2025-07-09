@@ -1,8 +1,16 @@
 export default function Home() {
   return (
-    <div style={{minHeight: "88vh"}} className="relative min-h-[88vh] grid-rows-[20px_1fr_20px] items-start justify-items-start font-[family-name:var(--font-geist-sans)]">
-      <div className="hero-background row-span-full"></div>
-      <main style={{color: "white"}} className="flex flex-col gap-[32px] row-start-2 items-start sm:items-start content-on-hero pl-[6%] pt-[13%]">
+    <div className="relative min-h-[88vh] font-[family-name:var(--font-geist-sans)] overflow-hidden">
+  {/* Optimized background image */}
+  <img
+    src="/newheroimage.png"
+    alt="Hero background"
+    className="absolute inset-0 w-full h-[85vh] object-cover z-0"
+    fetchPriority="high"
+  />
+
+  {/* Foreground content */}
+  <main className="relative z-10 flex flex-col gap-[32px] items-start pl-[6%] pt-[13%] text-white">
         <h1 style={{fontSize: "50px", fontWeight: "normal"}}>ShopScribe-AI</h1>
         <ol style={{fontWeight: "light"}} className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
           <li>
