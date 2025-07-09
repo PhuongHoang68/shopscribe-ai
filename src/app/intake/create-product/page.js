@@ -1,19 +1,14 @@
-// import Form from 'next/form'
-// import { createShop } from './actions'
+
 'use client'
 import { useState, useTransition, useEffect } from "react";
 import { createProduct } from "./actions";
-// import * as React from 'react';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import Link from "next/link";
 import { emphasize, styled } from '@mui/material/styles';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Chip from '@mui/material/Chip';
-import HomeIcon from '@mui/icons-material/Home';
 
 
 export default function ProductPage() {
@@ -24,38 +19,6 @@ export default function ProductPage() {
   const [priceRange, setPriceRange] = useState('');
   const [open, setOpen] = useState(true);
   const [close, setClose] = useState(false);
-
-  //breadcrumbs
-  const StyledBreadcrumb = styled(Chip)(({ theme }) => {
-    return {
-      backgroundColor: theme.palette.grey[100],
-      height: theme.spacing(3),
-      color: (theme.vars || theme).palette.text.primary,
-      fontWeight: theme.typography.fontWeightRegular,
-      '&:hover, &:focus': {
-        backgroundColor: emphasize(theme.palette.grey[100], 0.06),
-        ...theme.applyStyles('dark', {
-          backgroundColor: emphasize(theme.palette.grey[800], 0.06),
-        }),
-      },
-      '&:active': {
-        boxShadow: theme.shadows[1],
-        backgroundColor: emphasize(theme.palette.grey[100], 0.12),
-        ...theme.applyStyles('dark', {
-          backgroundColor: emphasize(theme.palette.grey[800], 0.12),
-        }),
-      },
-      ...theme.applyStyles('dark', {
-        backgroundColor: theme.palette.grey[800],
-      }),
-    };
-  });
-
-  function handleClick(event) {
-    event.preventDefault();
-    console.info('You clicked a breadcrumb.');
-  }
-  //
 
   //drop-downs
   const handleTone = (event) => {
@@ -94,6 +57,9 @@ export default function ProductPage() {
   
     return sections;
   }  
+  //
+
+
   
   //api call 
   function handleSubmit(formData) {
@@ -117,6 +83,9 @@ export default function ProductPage() {
       setOpen(false)
     })
   }
+  //
+
+
 
   //loading result from loclStorage if page reloads
   useEffect(() => {
@@ -126,6 +95,8 @@ export default function ProductPage() {
       setClose(true)
     }
   }, [])
+
+
   return (
     // <div className="max-w-xl mx-auto py-10 space-y-6">
     <>
@@ -166,7 +137,7 @@ export default function ProductPage() {
         </div>
 
         <div>
-          <label className="block font-medium">Who are your target audience?</label>
+          <label className="block font-medium">Who is your Target Audience?</label>
           <input name="target audience" className="w-full border px-3 py-2" required />
         </div>
 
@@ -176,7 +147,7 @@ export default function ProductPage() {
             {/* drop-down for Tone */}
           <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
-        <InputLabel id="select-tone">Tone</InputLabel>
+        <InputLabel id="select-tone">Tone of Writing</InputLabel>
         <Select
           labelId="select-tone"
           id="simple-select"
@@ -234,7 +205,7 @@ export default function ProductPage() {
 
         <button
           type="submit"
-          className="w-full bg-black text-white py-2 font-medium"
+          className="w-full bg-black text-white mt-3 py-2 font-medium rounded-full"
           disabled={isPending}
         >
           {isPending ? 'Generating...' : 'Generate My Product Listing'}
@@ -242,7 +213,7 @@ export default function ProductPage() {
       </form>
       <button
             onClick={() => setClose(!close)}
-            className="mb-4 pt-7 text-blue-600 hover:underline"
+            className="mb-4 pt-5 text-blue-600 hover:underline"
           >
               {close ? 'View Recent Result' : 'Hide Result'}
             </button></>

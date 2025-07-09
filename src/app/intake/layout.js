@@ -19,8 +19,8 @@ export default function IntakeLayout({ children }) {
       
 
         {[
+          { label: 'Product', href: '/intake/create-product', active: isProduct },
           { label: 'Shop', href: '/intake/create-shop', active: isShop },
-          { label: 'Product', href: '/intake/create-product', active: isProduct }
         ]
         .map(tab => (
           <Link

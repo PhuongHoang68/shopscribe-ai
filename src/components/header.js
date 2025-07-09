@@ -12,8 +12,8 @@ export default function Header() {
             <h1>ShopScribe-AI</h1>
             <div>
         <SignedOut>
-          <SignInButton className="sign-in" fallbackRedirectUrl="/shop"/>
-          <SignUpButton className="sign-up" fallbackRedirectUrl="/shop"/>
+          <SignInButton className="sign-in" style={{color: "#0B6623"}} fallbackRedirectUrl="/shop"/>
+          <SignUpButton className="sign-up" style={{color: "#0B6623"}} fallbackRedirectUrl="/shop"/>
         </SignedOut>
         <SignedIn>
           <UserButton />

@@ -61,35 +61,35 @@ export default function ShopPage() {
 
       {open && (
       <><h1 className="text-2xl font-semibold">Start Your Etsy Shop</h1>
-      <form action={handleSubmit} className="mt-6 space-y-4">
+      <form action={handleSubmit} className="mt-5 space-y-4">
           <div>
-            <label className="block font-medium">Product</label>
+            <label className="block font-medium">What are your main Products? (2-3 subsets) </label>
             <input name="product" className="w-full border px-3 py-2" required />
           </div>
 
           <div>
-            <label className="block font-medium">Target Audience</label>
+            <label className="block font-medium">Who is your Target Audience?</label>
             <input name="target audience" className="w-full border px-3 py-2" required />
           </div>
 
           <div>
-            <label className="block font-medium">Price Point</label>
+            <label className="block font-medium">What is your products' Price Point? (e.g., Budget, Mid-tier, Luxury)</label>
             <input name="price point" className="w-full border px-3 py-2" required />
           </div>
 
           <div>
-            <label className="block font-medium">Tangible or Digital</label>
+            <label className="block font-medium">Tangible or Digital Products?</label>
             <input name="tangible" className="w-full border px-3 py-2" required />
           </div>
 
           <div>
-            <label className="block font-medium">Brand Vibe</label>
+            <label className="block font-medium">What is your Brand Positioning? (e.g., Essentials, Alt, Gift Galores, Unique)</label>
             <input name="brand vibe" className="w-full border px-3 py-2" required />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-black text-white py-2 font-medium"
+            className="w-full bg-black text-white mt-3 py-2 font-medium rounded-full"
             disabled={isPending}
           >
             {isPending ? 'Generating...' : 'Create My Etsy Shop'}
@@ -97,7 +97,7 @@ export default function ShopPage() {
         </form>
         <button
             onClick={() => setClose(!close)}
-            className="mb-4 pt-7 text-blue-600 hover:underline"
+            className="mb-4 pt-4 text-blue-600 hover:underline"
           >
               {close ? 'View Recent Result' : 'Hide Result'}
             </button>
