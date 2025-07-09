@@ -32,9 +32,13 @@ export default function ShopPage() {
   }  
   
   function handleSubmit(formData) {
+    // localStorage.removeItem("Shop GPT response")
     startTransition(async () => {
       const outPut = await createShop(formData);
       setResult(outPut);
+      if (outPut) {
+        localStorage.setItem("Shop GPT response", outPut)
+      }
       setOpen(false)
     })
     
