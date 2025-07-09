@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Footer from '../../components/footer';
 
 export default function IntakeLayout({ children }) {
   const path = usePathname();
@@ -8,7 +9,7 @@ export default function IntakeLayout({ children }) {
   const isProduct = path?.endsWith('/create-product');
 
   return (
-<div className="relative min-h-[85vh]">
+<div className="relative min-h-[88vh]"> 
       <div className="intake-background row-span-full"></div>
       <div className="flex items-start content-on-hero">
     <div className="w-[600px] mx-4 mt-8 rounded-xl shadow-lg overflow-hidden" style={{height: "650px"}}>
@@ -42,6 +43,7 @@ export default function IntakeLayout({ children }) {
       </div>
     </div>
     </div>
+    <Footer></Footer>
     </div>
   );
 }

@@ -22,6 +22,7 @@ export default function ProductPage() {
   const [tone, setTone] = useState('');
   const [style, setStyle] = useState('');
   const [priceRange, setPriceRange] = useState('');
+  const [open, setOpen] = useState(true)
 
   //breadcrumbs
   const StyledBreadcrumb = styled(Chip)(({ theme }) => {
@@ -112,6 +113,7 @@ export default function ProductPage() {
         localStorage.setItem("Product GPT response", outPut)
       }
       console.log("Product saved to localStorage", outPut)
+      setOpen(false)
     })
   }
 
@@ -125,40 +127,49 @@ export default function ProductPage() {
   return (
     // <div className="max-w-xl mx-auto py-10 space-y-6">
     <>
-    <div className= "antialiased mx-auto py-12 space-y-6" style={{maxWidth: "1200px"}}>
-    <div role="presentation" onClick={handleClick}>
+    {/* <div className= "antialiased mx-auto py-12 space-y-6"> */}
+    <div>
+    {/* <div role="presentation" onClick={handleClick}>
       <Breadcrumbs aria-label="breadcrumb">
         {/* <Link href="/product"> */}
-        <StyledBreadcrumb
+        {/* <StyledBreadcrumb
           component={Link}
           href="/"
           label="Home"
-          icon={<HomeIcon fontSize="small" />}
-        />
+          icon={<HomeIcon fontSize="small" />} */}
+        
         {/* </Link> */}
-        <StyledBreadcrumb component="a" href="#" label="Product" />
+        {/* <StyledBreadcrumb component="a" href="#" label="Product" />
         {/* <StyledBreadcrumb
           label="Accessories"
           deleteIcon={<ExpandMoreIcon />}
           onDelete={handleClick}
         /> */}
-      </Breadcrumbs>
-    </div>
-      <h1 className="text-2xl font-semibold" style={{fontFamily: "__nextjs-Geist Mono"}}>Create My Product Listings</h1>
+      {/* </Breadcrumbs> */}
+    {/*</div> */} 
+    <button
+        onClick={() => setOpen(!open)}
+        className="mb-4 text-blue-600 hover:underline"
+      >
+        {open ? 'Hide Form' : 'Edit Inputs'}
+      </button>
+      {open && (
+        <>
+      <h1 className="text-2xl font-semibold">Create My Product Listings</h1>
 
-      <form action={handleSubmit} className="space-y-4">
+      <form action={handleSubmit} className="mt-6 space-y-4">
         <div>
-          <label className="block font-medium" style={{fontFamily: "__nextjs-Geist Mono"}}>What are you selling?</label>
+          <label className="block font-medium">What are you selling?</label>
           <input name="product" className="w-full border px-3 py-2" required />
         </div>
 
         <div>
-          <label className="block font-medium" style={{fontFamily: "__nextjs-Geist Mono"}}>Who are your target audience?</label>
+          <label className="block font-medium">Who are your target audience?</label>
           <input name="target audience" className="w-full border px-3 py-2" required />
         </div>
 
         <div>
-          <label className="block font-medium" style={{fontFamily: "__nextjs-Geist Mono"}}>Product Branding Settings:</label>
+          <label className="block font-medium">Product Branding Settings:</label>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* drop-down for Tone */}
           <Box sx={{ minWidth: 120 }}>
@@ -227,8 +238,8 @@ export default function ProductPage() {
         >
           {isPending ? 'Generating...' : 'Generate My Product Listing'}
         </button>
-      </form>
-
+      </form></>
+      )}
 
       {/* parsing results  */}
       {result && (

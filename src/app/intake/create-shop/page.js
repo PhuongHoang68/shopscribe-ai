@@ -6,6 +6,7 @@ import { createShop } from "./actions";
 export default function ShopPage() {
   const [result, setResult] = useState('');
   const [isPending, startTransition] = useTransition();
+  const [open, setOpen] = useState(true)
 
   function parseSections(text) {
     const sectionRegex = /^(\d+\.\s)?([A-Z][\w\s\-()]+):/gm;
@@ -33,48 +34,59 @@ export default function ShopPage() {
     startTransition(async () => {
       const outPut = await createShop(formData);
       setResult(outPut);
+      setOpen(false)
     })
     
   }
   return (
     // <div className="max-w-xl mx-auto py-10 space-y-6">
-    <div>
-      <h1 className="text-2xl font-semibold">Start Your Etsy Shop</h1>
 
+    <div className= "antialiased" >
+            <button
+        onClick={() => setOpen(!open)}
+        className="mb-4 text-blue-600 hover:underline"
+      >
+        {open ? 'Hide Form' : 'Edit Inputs'}
+      </button>
+
+      {open && (
+      <><h1 className="text-2xl font-semibold">Start Your Etsy Shop</h1>
       <form action={handleSubmit} className="mt-6 space-y-4">
-        <div>
-          <label className="block font-medium">Product</label>
-          <input name="product" className="w-full border px-3 py-2" required />
-        </div>
+          <div>
+            <label className="block font-medium">Product</label>
+            <input name="product" className="w-full border px-3 py-2" required />
+          </div>
 
-        <div>
-          <label className="block font-medium">Target Audience</label>
-          <input name="target audience" className="w-full border px-3 py-2" required />
-        </div>
+          <div>
+            <label className="block font-medium">Target Audience</label>
+            <input name="target audience" className="w-full border px-3 py-2" required />
+          </div>
 
-        <div>
-          <label className="block font-medium">Price Point</label>
-          <input name="price point" className="w-full border px-3 py-2" required />
-        </div>
+          <div>
+            <label className="block font-medium">Price Point</label>
+            <input name="price point" className="w-full border px-3 py-2" required />
+          </div>
 
-        <div>
-          <label className="block font-medium">Tangible or Digital</label>
-          <input name="tangible" className="w-full border px-3 py-2" required />
-        </div>
+          <div>
+            <label className="block font-medium">Tangible or Digital</label>
+            <input name="tangible" className="w-full border px-3 py-2" required />
+          </div>
 
-        <div>
-          <label className="block font-medium">Brand Vibe</label>
-          <input name="brand vibe" className="w-full border px-3 py-2" required />
-        </div>
+          <div>
+            <label className="block font-medium">Brand Vibe</label>
+            <input name="brand vibe" className="w-full border px-3 py-2" required />
+          </div>
 
-        <button
-          type="submit"
-          className="w-full bg-black text-white py-2 font-medium"
-          disabled={isPending}
-        >
-          {isPending ? 'Generating...' : 'Create My Etsy Shop'}
-        </button>
-      </form>
+          <button
+            type="submit"
+            className="w-full bg-black text-white py-2 font-medium"
+            disabled={isPending}
+          >
+            {isPending ? 'Generating...' : 'Create My Etsy Shop'}
+          </button>
+        </form></>
+      )}
+          
 
       {result && (
   <div className="mt-6 p-4 border bg-gray-50 space-y-4">
@@ -88,5 +100,6 @@ export default function ShopPage() {
   </div>
 )}
       </div>
+      
   )
 }

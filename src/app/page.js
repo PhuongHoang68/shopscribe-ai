@@ -4,7 +4,7 @@ import { MdEmail } from "react-icons/md";
 
 export default function Home() {
   return (
-    <div style={{minHeight: "88vh"}} className="grid-rows-[20px_1fr_20px] items-start justify-items-start font-[family-name:var(--font-geist-sans)]">
+    <div style={{minHeight: "98vh"}} className="relative min-h-[88vh] grid-rows-[20px_1fr_20px] items-start justify-items-start font-[family-name:var(--font-geist-sans)]">
       <div className="hero-background row-span-full"></div>
       <main style={{color: "white"}} className="flex flex-col gap-[32px] row-start-2 items-start sm:items-start content-on-hero pl-[6%] pt-[13%]">
         <h1 style={{fontSize: "50px", fontWeight: "normal"}}>ShopScribe-AI</h1>
