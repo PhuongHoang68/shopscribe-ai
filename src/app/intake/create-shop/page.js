@@ -1,12 +1,13 @@
 'use client'
-import { useState, useTransition } from "react";
+import { useState, useTransition, useEffect } from "react";
 import { createShop } from "./actions";
 
 
 export default function ShopPage() {
   const [result, setResult] = useState('');
   const [isPending, startTransition] = useTransition();
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(true);
+  const [close, setClose] = useState(false);
 
   function parseSections(text) {
     const sectionRegex = /^(\d+\.\s)?([A-Z][\w\s\-()]+):/gm;
@@ -38,10 +39,19 @@ export default function ShopPage() {
     })
     
   }
+
+    //loading result from loclStorage if page reloads
+    useEffect(() => {
+      const stored = localStorage.getItem("Shop GPT response")
+      if (stored) {
+        setResult(stored)
+        setClose(true)
+      }
+    }, [])
   return (
     // <div className="max-w-xl mx-auto py-10 space-y-6">
 
-    <div className= "antialiased" >
+    <div className= "antialiased" style={{paddingBottom: "40px"}} >
             <button
         onClick={() => setOpen(!open)}
         className="mb-4 text-blue-600 hover:underline"
@@ -84,11 +94,18 @@ export default function ShopPage() {
           >
             {isPending ? 'Generating...' : 'Create My Etsy Shop'}
           </button>
-        </form></>
+        </form>
+        <button
+            onClick={() => setClose(!close)}
+            className="mb-4 pt-7 text-blue-600 hover:underline"
+          >
+              {close ? 'View Recent Result' : 'Hide Result'}
+            </button>
+        </>
       )}
           
 
-      {result && (
+      {result && !close && (
   <div className="mt-6 p-4 border bg-gray-50 space-y-4">
     <h2 className="text-xl font-semibold mb-4">🛍️ Your Etsy Shop Blueprint</h2>
     {Object.entries(parseSections(result)).map(([section, content]) => (
@@ -97,6 +114,28 @@ export default function ShopPage() {
         <p className="whitespace-pre-wrap">{content}</p>
       </div>
     ))}
+                <p style={{ fontFamily: "__nextjs-Geist Mono", paddingTop: "40px" }}>Ready to generate your banner and icon?</p>
+            <div className="flex gap-4 justify-between items-center sm:flex-row" style={{ paddingTop: "5px" }}>
+              <a
+                href="https://ideogram.ai/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <button className="rounded-full border border-solid border-black/[.08] dark:border-black/[.145] transition-colors flex bg-background items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-11 px-4 w-full md:w-[158px]">
+                  Ideogram
+                </button>
+              </a>
+              <a
+                href="https://www.canva.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+              <button className="rounded-full border border-solid border-transparent transition-colors flex items-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-11 px-4"
+            target="_blank"
+            rel="noopener noreferrer">Canva
+                </button>
+                </a>
+            </div>
   </div>
 )}
       </div>

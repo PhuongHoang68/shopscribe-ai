@@ -232,7 +232,7 @@ export default function Page() {
 
       {/* parsing results  */}
       {result && (
-  <div className="mt-6 p-4 border bg-gray-50 space-y-4" style={{padding: "40px", marginTop: "56px", fontFamily: "__nextjs-Geist Mono"}}>
+  <div className="mt-6 p-4 border bg-gray-50 space-y-4">
     <h2 className="text-xl font-semibold mb-4">🛍️ Your Etsy Product Listing</h2>
     {Object.entries(parseSections(result)).map(([section, content]) => (
       <div key={section}>
@@ -244,19 +244,18 @@ export default function Page() {
 
     {/* navigation to ideogram, canva, or product page */}
     <p style={{fontFamily: "__nextjs-Geist Mono", paddingTop: "95px"}}>Ready to generate your AI mock-ups?</p>
-    <div className="flex gap-4 items-center flex-col sm:flex-row" style={{paddingTop: "5px"}}>
+    <div className="flex gap-4 justify-center items-center flex-col sm:flex-row" style={{paddingTop: "5px"}}>
     <a 
     href="https://placeit.net/"
     target="_blank"
     rel="noopener noreferrer"
     >
-    <button className="rounded-full border border-solid border-black/[.08] dark:border-black/[.145] transition-colors flex bg-background items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]">
+    <button className="rounded-full border border-solid border-black/[.08] dark:border-black/[.145] transition-colors flex bg-background items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-11 px-4 w-full md:w-[158px]">
       Place It
     </button>
     </a>
     <Link href="/shop">
-    <button className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-end bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            style={{marginLeft: "584px"}}
+    <button className="rounded-full border border-solid border-transparent transition-colors flex items-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-11 px-4"
             target="_blank"
             rel="noopener noreferrer">Go To Shop Creation
     </button>

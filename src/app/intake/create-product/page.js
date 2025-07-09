@@ -22,7 +22,8 @@ export default function ProductPage() {
   const [tone, setTone] = useState('');
   const [style, setStyle] = useState('');
   const [priceRange, setPriceRange] = useState('');
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(true);
+  const [close, setClose] = useState(false);
 
   //breadcrumbs
   const StyledBreadcrumb = styled(Chip)(({ theme }) => {
@@ -122,13 +123,14 @@ export default function ProductPage() {
     const stored = localStorage.getItem("Product GPT response")
     if (stored) {
       setResult(stored)
+      setClose(true)
     }
   }, [])
   return (
     // <div className="max-w-xl mx-auto py-10 space-y-6">
     <>
     {/* <div className= "antialiased mx-auto py-12 space-y-6"> */}
-    <div>
+    <div className= "antialiased" style={{paddingBottom: "40px"}}>
     {/* <div role="presentation" onClick={handleClick}>
       <Breadcrumbs aria-label="breadcrumb">
         {/* <Link href="/product"> */}
@@ -155,7 +157,7 @@ export default function ProductPage() {
       </button>
       {open && (
         <>
-      <h1 className="text-2xl font-semibold">Create My Product Listings</h1>
+      <h1 className="text-2xl font-semibold">Create New Product Listing</h1>
 
       <form action={handleSubmit} className="mt-6 space-y-4">
         <div>
@@ -174,7 +176,7 @@ export default function ProductPage() {
             {/* drop-down for Tone */}
           <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
-        <InputLabel id="select-tone">Tone/personality of the writings</InputLabel>
+        <InputLabel id="select-tone">Tone</InputLabel>
         <Select
           labelId="select-tone"
           id="simple-select"
@@ -193,7 +195,7 @@ export default function ProductPage() {
     {/* drop-dow for style */}
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
-        <InputLabel id="select-style">Aesthetics/visuals of product</InputLabel>
+        <InputLabel id="select-style">Aesthetics</InputLabel>
         <Select
           labelId="select-style"
           id="simple-select"
@@ -233,47 +235,51 @@ export default function ProductPage() {
         <button
           type="submit"
           className="w-full bg-black text-white py-2 font-medium"
-          style={{fontFamily: "__nextjs-Geist Mono"}}
           disabled={isPending}
         >
           {isPending ? 'Generating...' : 'Generate My Product Listing'}
         </button>
-      </form></>
+      </form>
+      <button
+            onClick={() => setClose(!close)}
+            className="mb-4 pt-7 text-blue-600 hover:underline"
+          >
+              {close ? 'View Recent Result' : 'Hide Result'}
+            </button></>
       )}
-
       {/* parsing results  */}
-      {result && (
-  <div className="mt-6 p-4 border bg-gray-50 space-y-4" style={{padding: "40px", marginTop: "56px", fontFamily: "__nextjs-Geist Mono"}}>
-    <h2 className="text-xl font-semibold mb-4">🛍️ Your Etsy Product Listing</h2>
-    {Object.entries(parseSections(result)).map(([section, content]) => (
-      <div key={section}>
-        <h3 className="font-bold mb-1">{section}</h3>
-        <p className="whitespace-pre-wrap">{content}</p>
-      </div>
-    ))}
+      {result && !close && (
+  <><div className="mt-6 p-4 border bg-gray-50 space-y-4" style={{ padding: "40px", marginTop: "56px", fontFamily: "__nextjs-Geist Mono" }}>
+            <h2 className="text-xl font-semibold mb-4">🛍️ Your Etsy Product Listing</h2>
+            {Object.entries(parseSections(result)).map(([section, content]) => (
+              <div key={section}>
+                <h3 className="font-bold mb-1">{section}</h3>
+                <p className="whitespace-pre-wrap">{content}</p>
+              </div>
+            ))}
 
 
-    {/* navigation to ideogram, canva, or product page */}
-    <p style={{fontFamily: "__nextjs-Geist Mono", paddingTop: "95px"}}>Ready to generate your AI mock-ups?</p>
-    <div className="flex gap-4 items-center flex-col sm:flex-row" style={{paddingTop: "5px"}}>
-    <a 
-    href="https://placeit.net/"
-    target="_blank"
-    rel="noopener noreferrer"
-    >
-    <button className="rounded-full border border-solid border-black/[.08] dark:border-black/[.145] transition-colors flex bg-background items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]">
-      Place It
-    </button>
-    </a>
-    <Link href="/shop">
-    <button className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-end bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            style={{marginLeft: "584px"}}
+            {/* navigation to ideogram, canva, or product page */}
+            <p style={{ fontFamily: "__nextjs-Geist Mono", paddingTop: "40px" }}>Ready to generate your AI mock-ups?</p>
+            <div className="flex gap-4 pb-5 items-center sm:flex-row" style={{ paddingTop: "5px" }}>
+              <a
+                href="https://placeit.net/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <button className="rounded-full border border-solid border-black/[.08] dark:border-black/[.145] transition-colors flex bg-background items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-11 px-4 w-full md:w-[158px]">
+                  Place It
+                </button>
+              </a>
+              {/* <Link href="/shop">
+              <button className="rounded-full border border-solid border-transparent transition-colors flex items-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-11 px-4"
             target="_blank"
             rel="noopener noreferrer">Go To Shop Creation
-    </button>
-    </Link>
-    </div>
-  </div>
+                </button>
+              </Link> */}
+            </div>
+          </div>
+            </>
 )
 }
 
