@@ -133,19 +133,19 @@ export default function ProductPage() {
       <form action={handleSubmit} className="mt-6 space-y-4">
         <div>
           <label className="block font-medium">What are you selling?</label>
-          <input name="product" className="w-full border px-3 py-2" required />
+          <input name="product" className="shadow-lg w-full border px-3 py-2" required />
         </div>
 
         <div>
           <label className="block font-medium">Who is your Target Audience?</label>
-          <input name="target audience" className="w-full border px-3 py-2" required />
+          <input name="target audience" className="shadow-lg w-full border px-3 py-2" required />
         </div>
 
         <div>
           <label className="block font-medium">Product Branding Settings:</label>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* drop-down for Tone */}
-          <Box sx={{ minWidth: 120 }}>
+          <Box className = "shadow-lg" sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
         <InputLabel id="select-tone">Tone of Writing</InputLabel>
         <Select
@@ -164,7 +164,7 @@ export default function ProductPage() {
       </FormControl>
     </Box>
     {/* drop-dow for style */}
-    <Box sx={{ minWidth: 120 }}>
+    <Box className = "shadow-lg" sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
         <InputLabel id="select-style">Aesthetics</InputLabel>
         <Select
@@ -184,7 +184,7 @@ export default function ProductPage() {
       </FormControl>
     </Box>
     {/* drop-down for price range */}
-    <Box sx={{ minWidth: 120 }}>
+    <Box className = "shadow-lg" sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
         <InputLabel id="select-price-range">Price positioning</InputLabel>
         <Select
@@ -205,7 +205,7 @@ export default function ProductPage() {
 
         <button
           type="submit"
-          className="w-full bg-gradient-to-r from-blue-300 via-blue-400 to-blue-600 shadow-sm text-white mt-3 py-2 font-medium rounded-full hover:from-blue-600 hover:via-blue-400 hover:to-blue-200 hover:shadow-lg"
+          className="w-full bg-gradient-to-r from-blue-200 via-blue-400 to-blue-600 shadow-sm text-white mt-3 py-2 font-medium rounded-full hover:from-blue-600 hover:via-blue-400 hover:to-blue-200 hover:shadow-lg"
           disabled={isPending}
         >
           {isPending ? 'Generating...' : 'Generate My Product Listing'}

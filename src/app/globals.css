@@ -38,8 +38,8 @@ padding: 28px 46px 28px 46px;
 align-items: center;
 }
 
-.sign-in{
-  padding-right: 28px;
+.sign-up{
+  margin-right: 6px;
 }
 
 .hero-background {
@@ -81,7 +81,7 @@ align-items: center;
 
 .cl-avatarBox {
   margin-top: 9px;
-  width: 2.36rem;
-  height: 2.36rem;
+  width: 2.26rem;
+  height: 2.26rem;
 }
 

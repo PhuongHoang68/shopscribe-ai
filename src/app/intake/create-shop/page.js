@@ -1,14 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
 'use client'
 import { useState, useTransition, useEffect } from "react";
-import { createShop } from "./actions";
-
 
 export default function ShopPage() {
   const [result, setResult] = useState('');
   const [isPending, startTransition] = useTransition();
   const [open, setOpen] = useState(true);
   const [close, setClose] = useState(false);
+  const [error, setError] = useState(null);
 
   function parseSections(text) {
     const sectionRegex = /^(\d+\.\s)?([A-Z][\w\s\-()]+):/gm;
@@ -32,18 +31,87 @@ export default function ShopPage() {
     return sections;
   }  
   
-  function handleSubmit(formData) {
-    // localStorage.removeItem("Shop GPT response")
-    startTransition(async () => {
-      const outPut = await createShop(formData);
-      setResult(outPut);
-      if (outPut) {
-        localStorage.setItem("Shop GPT response", outPut)
-      }
-      setOpen(false)
-    })
+  // function handleSubmit(formData) {
+  //   // localStorage.removeItem("Shop GPT response")
+  //   startTransition(async () => {
+  //     const outPut = await createShop(formData);
+  //     setResult(outPut);
+  //     if (outPut) {
+  //       localStorage.setItem("Shop GPT response", outPut)
+  //     }
+  //     setOpen(false)
+  //   })
     
-  }
+  // }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const payload = {
+      product: formData.get('product'),
+      targetAudience: formData.get('target audience'),
+      pricePoint: formData.get('price point'),
+      tangible: formData.get('tangible'),
+      brandVibe: formData.get('brand vibe'),
+    };
+    console.log("starting fetch");
+    startTransition(async () => {
+      setError(null); // Clear previous errors
+      setResult(''); // Clear previous result
+      try {
+        const res = await fetch('/intake/create-shop/api/create-shop', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        const data = await res.json();
+        console.log("fetch completed", data.result);
+
+        // Check if valid response received
+        if (data.result && data.result.trim() !== '') {
+          setResult(data.result);
+          localStorage.setItem("Shop GPT response", data.result);
+
+          // Only hide the form once the result is set
+          setOpen(false);
+        } else {
+          setError('No result returned from API');
+        }
+
+    
+    // try {
+    //   console.log("Submitting to /intake/create-shop/api/create-shop...");
+    //   const res = await fetch('/intake/create-shop/api/create-shop', {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify(payload),
+    //   });
+    //   const data = await res.json();
+    // console.log("fetch completed", data.result);
+
+    // // Ensure valid response
+    // if (data.result && data.result.trim() !== '') {
+    //   setResult(data.result);
+
+    //   // Delay hiding the form by a small amount of time to allow React to process state
+    //   setTimeout(() => {
+    //     setOpen(false); // Hide the form
+    //     localStorage.setItem("Shop GPT response", data.result);
+    //   }, 100); // 100ms delay
+    // } else {
+    //   setResult('Something went wrong or no result returned');
+    //   console.error('No valid result returned from API');
+    // }
+    } catch (error) {
+      console.error('Fetch error:', error);
+    }
+  });
+};
+  
+  
+  useEffect(() => {
+    console.log("result", result);
+  }, [result])
 
     //loading result from loclStorage if page reloads
     useEffect(() => {
@@ -66,35 +134,35 @@ export default function ShopPage() {
 
       {open && (
       <><h1 className="text-2xl font-semibold">Start Your Etsy Shop</h1>
-      <form action={handleSubmit} className="mt-5 space-y-4">
+      <form onSubmit={handleSubmit} className="mt-5 space-y-4">
           <div>
             <label className="block font-medium">What are your main Products? (2-3 subsets) </label>
-            <input name="product" className="w-full border px-3 py-2" required />
+            <input name="product" className="w-full shadow-lg border px-3 py-2" required />
           </div>
 
           <div>
             <label className="block font-medium">Who is your Target Audience?</label>
-            <input name="target audience" className="w-full border px-3 py-2" required />
+            <input name="target audience" className="w-full shadow-lg border px-3 py-2" required />
           </div>
 
           <div>
             <label className="block font-medium">What is your products' Price Point? (e.g., Budget, Mid-tier, Luxury)</label>
-            <input name="price point" className="w-full border px-3 py-2" required />
+            <input name="price point" className="w-full shadow-lg border px-3 py-2" required />
           </div>
 
           <div>
             <label className="block font-medium">Tangible or Digital Products?</label>
-            <input name="tangible" className="w-full border px-3 py-2" required />
+            <input name="tangible" className="w-full border shadow-lg px-3 py-2" required />
           </div>
 
           <div>
             <label className="block font-medium">What is your Brand Positioning? (e.g., Essentials, Alt, Gift Galores, Unique)</label>
-            <input name="brand vibe" className="w-full border px-3 py-2" required />
+            <input name="brand vibe" className="w-full shadow-lg border px-3 py-2" required />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-blue-300 via-blue-400 to-blue-600 shadow-sm text-white mt-3 py-2 font-medium rounded-full hover:from-blue-600 hover:via-blue-400 hover:to-blue-200 hover:shadow-lg"
+            className="w-full bg-gradient-to-r from-blue-200 via-blue-400 to-blue-600 shadow-sm text-white mt-3 py-2 font-medium rounded-full hover:from-blue-600 hover:via-blue-400 hover:to-blue-200 hover:shadow-lg"
             disabled={isPending}
           >
             {isPending ? 'Generating...' : 'Create My Etsy Shop'}

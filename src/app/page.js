@@ -1,23 +1,28 @@
+import Image from "next/image";
+import Link from "next/link";
+import { FaRegArrowAltCircleRight } from "react-icons/fa";
+
 export default function Home() {
   return (
-    <div className="relative min-h-[88vh] font-[family-name:var(--font-geist-sans)] overflow-hidden">
+    <div className="relative min-h-[86vh] font-[family-name:var(--font-geist-sans)] overflow-hidden">
   {/* Optimized background image */}
-  <img
+  <Image
     src="/newheroimage.png"
     alt="Hero background"
-    className="absolute inset-0 w-full h-[85vh] object-cover z-0"
+    fill
+    className="object-cover z-0"
     fetchPriority="high"
   />
 
   {/* Foreground content */}
   <main className="relative z-10 flex flex-col gap-[32px] items-start pl-[6%] pt-[13%] text-white">
         <h1 style={{fontSize: "50px", fontWeight: "normal"}}>ShopScribe-AI</h1>
-        <ol style={{fontWeight: "light"}} className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
+        <ol style={{fontWeight: "normal", fontSize: "15px"}} className="list-inside list-decimal sm:text-left font-[family-name:var(--font-geist-mono)]">
           <li>
-            Build the Etsy shop of your dreams
+          <Link className="inline-flex items-center gap-2" href="/intake/create-shop">Build the Etsy shop of your dreams <FaRegArrowAltCircleRight size={16} aria-hidden /></Link>
           </li>
           <li className="tracking-[-.01em]">
-            Create product listings instantly.
+          <Link className="inline-flex items-center gap-2" href="/intake/create-product">Create product listings instantly <FaRegArrowAltCircleRight size={16} aria-hidden /></Link>
           </li>
         </ol>
 

@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Footer from '../../components/footer';
@@ -9,17 +10,18 @@ export default function IntakeLayout({ children }) {
   const isProduct = path?.endsWith('/create-product');
 
   return (
-<div className="relative min-h-[88vh] overflow-hidden"> 
-<img
+<div className="relative min-h-[86vh] overflow-hidden"> 
+<Image
     src="/intakebackground.png"
+    fill
     alt="Background"
-    className="absolute inset-0 w-full h-[85vh] object-cover z-0"
+    className="object-cover z-0"
     fetchPriority="high"
   />
     <div className="relative z-10 flex items-start">
     <div
-      className="w-[600px] mx-4 mt-8 rounded-xl shadow-lg overflow-auto bg-white"
-      style={{ height: '650px' }}
+      className="w-[620px] mx-4 mt-8 rounded-xl shadow-lg overflow-auto bg-white"
+      style={{ height: '710px' }}
     >
       <nav className="tabs-bar relative px-4 pt-4 h-[52px]">
       {/* <div className="intake-background row-span-full"></div>
