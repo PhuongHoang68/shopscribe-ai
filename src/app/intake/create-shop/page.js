@@ -157,8 +157,8 @@ export default function ShopPage() {
               <p className="whitespace-pre-wrap">{content}</p>
             </div>
           ))}
-          <p style={{ fontFamily: "__nextjs-Geist Mono", paddingTop: "40px" }}>Ready to generate your banner and icon?</p>
-          <div className="flex gap-4 justify-between items-center sm:flex-row" style={{ paddingTop: "5px" }}>
+          <p style={{ fontWeight: "bold", paddingTop: "40px" }}>Ready to generate your banner and icon?</p>
+          <div className="flex gap-4 justify-between items-center sm:flex-row" style={{ paddingTop: "4px" }}>
             <a href="https://ideogram.ai/" target="_blank" rel="noopener noreferrer">
               <button className="rounded-full border border-solid border-black/[.08] dark:border-black/[.145] transition-colors flex bg-background items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-11 px-4 w-full md:w-[158px]">
                 Ideogram

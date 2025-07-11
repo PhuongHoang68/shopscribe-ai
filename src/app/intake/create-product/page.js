@@ -215,26 +215,26 @@ export default function ProductPage() {
             </div>
           ))}
           {/* Navigation buttons */}
-          <p style={{ fontFamily: "__nextjs-Geist Mono", paddingTop: "40px" }}>Ready to generate your AI mock-ups?</p>
-          <div className="flex gap-4 pb-5 items-center sm:flex-row" style={{ paddingTop: "5px" }}>
+          <p style={{ paddingTop: "40px", fontWeight: "bold" }}>Ready to generate your AI mock-ups?</p>
+          <div className="flex gap-4 justify-between items-center sm:flex-row" style={{ paddingTop: "4px" }}>
             <a
               href="https://placeit.net/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <button className="rounded-full border border-solid border-black/[.08] bg-white py-2 px-4 text-sm font-medium text-black dark:text-white dark:hover:bg-white dark:hover:text-black hover:bg-black hover:text-white">
-                View Product Mockups
+              <button className="rounded-full border border-solid border-black/[.08] dark:border-black/[.145] transition-colors flex bg-background items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-11 px-4 w-full md:w-[158px]">
+                PlaceIt
               </button>
             </a>
-            <a
+            {/* <a
               href="https://www.etsy.com"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <button className="rounded-full bg-gradient-to-r from-green-200 via-green-400 to-green-600 py-2 px-4 text-sm font-medium text-white hover:from-green-600 hover:via-green-400 hover:to-green-200">
-                Add to Etsy Listing
+              <button className="rounded-full border border-solid border-transparent transition-colors flex items-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-11 px-4" target="_blank" rel="noopener noreferrer">
+                Go To Etsy
               </button>
-            </a>
+            </a> */}
           </div>
         </div>
       )}
