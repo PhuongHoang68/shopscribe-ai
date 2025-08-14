@@ -1,6 +1,8 @@
 # Etsy-Seller-AI-App
 
 ![Badge](https://img.shields.io/badge/License-MIT-lightblue.svg)
+<img width="1440" height="900" alt="Screen Shot 2025-07-09 at 1 18 31 AM" src="https://github.com/user-attachments/assets/f4e79828-3394-4375-9eed-4a05be76e522" />
+<img width="1440" height="900" alt="Screen Shot 2025-07-09 at 1 15 47 AM" src="https://github.com/user-attachments/assets/fea1e03c-61ab-4390-9908-9a89c245c227" />
 
 
 
@@ -61,7 +63,7 @@ The app streamlines branding, marketing copy, SEO, and visual design suggestions
 
 ## Website
 
-Deployed on Vercel: ⚠️ **Private Link** — This project is on-going, could be shown through live-walk through.
+⚠️ **Private Link** — This project is on-going, could be shown through live-walk through.
 
 ## License
 
